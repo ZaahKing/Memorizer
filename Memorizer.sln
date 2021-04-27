@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documantation", "Documantat
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorizer.Web", "Memorizer.Web\Memorizer.Web.csproj", "{FA0790CE-0271-49B5-ABB4-BDD30C6B83BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memorizer.Web", "Memorizer.Web\Memorizer.Web.csproj", "{FA0790CE-0271-49B5-ABB4-BDD30C6B83BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

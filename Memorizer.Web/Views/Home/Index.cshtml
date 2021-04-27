@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Home page</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "btn btn-default" })
+}
+else
+{
+    @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-default" })
+}
