@@ -37,6 +37,22 @@ namespace Memorizer.Web.Controllers
             return View(credentials);
         }
 
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel registerData)
+        {
+            if (ModelState.IsValid)
+            {
+                return Content($"{registerData.Login} - {registerData.Password}");
+            }
+            return View(registerData);
+        }
+
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
