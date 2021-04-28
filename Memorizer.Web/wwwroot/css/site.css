@@ -1,0 +1,54 @@
+:root{
+    --paleorange:#f85;
+}
+
+.bg-veryblack{
+    background-color: black!important;
+}
+.bg-paleorange{
+    background-color: var(--paleorange)!important;
+}
+.bg-lightblue{
+  background-color:lightblue!important;
+}
+.bg-test{
+  background-color:rgb(184, 184, 184)!important;
+}
+.bg-verylightgrey
+{
+    background-color:#bbb!important;
+}
+
+/* where many text */
+.chapter {
+    font-weight: 300;
+    font-size:1.33em;
+}
+.chapter h1, .chapter h2{
+
+    color:black;
+    margin-top:1em;
+    margin-bottom: 0.5em;
+}
+.chapter p{
+    color: var(--dark);
+    text-indent: 2.5em;
+    text-align: justify;
+}
+.chapter img {
+    margin: 1em;
+}
+
+/* Fix some bootstrap feutures!!! */
+.modal-header{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+input[type=checkbox]{
+    transform: scale(1.5);
+}
+
+.dropdown-menu{
+  z-index: 1025;
+}
+
