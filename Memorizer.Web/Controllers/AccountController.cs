@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Memorizer.Web.Controllers
 {
-    public class Account : Controller
+    public class AccountController : Controller
     {
         public IActionResult Index()
         {
@@ -22,11 +22,12 @@ namespace Memorizer.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(Credentials credentials)
         {
             if (ModelState.IsValid)
             {
-                if (credentials.Login == "zack" && credentials.Password == "12321")
+                if (credentials.Login == "zack@gmail.com" && credentials.Password == "12321")
                 {
                     await Authenticate(credentials.Login);
                     return RedirectToAction("Index", "Home");
@@ -44,6 +45,7 @@ namespace Memorizer.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterViewModel registerData)
         {
             if (ModelState.IsValid)
@@ -53,6 +55,8 @@ namespace Memorizer.Web.Controllers
             return View(registerData);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

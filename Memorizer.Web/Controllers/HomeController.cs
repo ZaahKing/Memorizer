@@ -22,7 +22,8 @@ namespace Memorizer.Web.Controllers
                 CultureInfo.CurrentCulture = new CultureInfo(code);
                 CultureInfo.CurrentUICulture = new CultureInfo(code);
             }
-            return $"CurrentCulture:{CultureInfo.CurrentCulture.Name}, CurrentUICulture:{CultureInfo.CurrentUICulture.Name}";
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            return $"CurrentCulture:{CultureInfo.CurrentCulture.Name}, CurrentUICulture:{CultureInfo.CurrentUICulture.Name}, {env}";
         }
     }
 }
