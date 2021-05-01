@@ -1,8 +1,12 @@
-﻿using Memorizer.Web.Models.Authorize;
+﻿using Memorizer.Web.DataAccess;
+using Memorizer.Web.Models.Authorize;
+using Memorizer.Web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -10,6 +14,14 @@ namespace Memorizer.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly AppDBContext db;
+        private readonly AuthService authService;
+        public AccountController(AppDBContext db) : base()
+        {
+            this.db = db;
+            authService = new AuthService(db);
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -27,7 +39,8 @@ namespace Memorizer.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (credentials.Login == "zack@gmail.com" && credentials.Password == "12321")
+                var user = await authService.Login(credentials.Login, credentials.Password);
+                if (user != null)
                 {
                     await Authenticate(credentials.Login);
                     return RedirectToAction("Index", "Home");
