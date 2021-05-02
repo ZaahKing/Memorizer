@@ -5,7 +5,10 @@ namespace Memorizer.Web.Models.Authorize
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Login must be typed.")]
+        [DataType(DataType.EmailAddress)]
         public string Login { get; set; }
+
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Password must be typed.")]
         [DataType(DataType.Password)]

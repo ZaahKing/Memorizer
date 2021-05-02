@@ -12,13 +12,14 @@
                 <div class="card-header">@ViewBag.Title</div>
 
                 <div class="card-body">
-                    <form  asp-action="Login" asp-controller="Account" asp-anti-forgery="true" method="post">
+                    <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group row">
-                            <label asp-for="Login"class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label asp-for="Login" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input asp-for="Login" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus/>
-                                <span asp-validation-for="Login"/>
+                                <input asp-for="Login" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus />
+                                <span asp-validation-for="Login" />
                             </div>
                         </div>
 
@@ -27,19 +28,21 @@
 
                             <div class="col-md-6">
                                 <input asp-for="Password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" required>
-                                <span asp-validation-for="Password"  class="invalid-feedback" role="alert"/>
+                                <span asp-validation-for="Password" class="invalid-feedback" role="alert" />
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="offset-md-4">
-                                <button type="submit" class="btn btn-primary"  value="Login">
+                                <button type="submit" class="btn btn-primary" value="Login">
                                     {{ __('Login') }}
                                 </button>
                                 <br />
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
+                                <br />
+                                <a class="btn btn-link" asp-action="Register" asp-controller="Account">Registration</a>
                             </div>
                         </div>
                     </form>

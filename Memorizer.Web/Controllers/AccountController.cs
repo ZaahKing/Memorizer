@@ -1,4 +1,5 @@
 ﻿using Memorizer.Web.DataAccess;
+using Memorizer.Web.Models;
 using Memorizer.Web.Models.Authorize;
 using Memorizer.Web.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -59,11 +60,23 @@ namespace Memorizer.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(RegisterViewModel registerData)
+        public async Task<IActionResult> Register(RegisterViewModel registerData)
         {
             if (ModelState.IsValid)
             {
-                return Content($"{registerData.Login} - {registerData.Password}");
+                if (!await this.authService.UserExists(registerData.Login.ToLower()))
+                {
+                    await this.authService.Register(
+                        new User
+                        {
+                            Email = registerData.Login,
+                            Name = registerData.Name,
+                        },
+                        registerData.Password);
+                    await this.Authenticate(registerData.Login);
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", "User with same login is exist.");
             }
             return View(registerData);
         }

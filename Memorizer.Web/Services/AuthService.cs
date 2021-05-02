@@ -19,7 +19,7 @@ namespace Memorizer.Web.Services
 
         public async Task<User> Login(string login, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == login);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == login.ToLower());
             if (user == null)
                 return null;
 
@@ -33,7 +33,7 @@ namespace Memorizer.Web.Services
         {
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
-
+            user.Email = user.Email.ToLower();
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
@@ -45,7 +45,7 @@ namespace Memorizer.Web.Services
 
         public async Task<bool> UserExists(string login)
         {
-            if (await _context.Users.AnyAsync(x => x.Email.Equals(login, StringComparison.CurrentCultureIgnoreCase)))
+            if (await _context.Users.AnyAsync(x => x.Email == login))
                 return true;
             return false;
         }
