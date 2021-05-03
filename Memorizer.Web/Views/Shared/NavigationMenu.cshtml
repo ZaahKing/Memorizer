@@ -19,11 +19,10 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="{{route('settings')}}">{{__('label.settings')}}</a>
                 <a class="dropdown-item" asp-action="Logout" asp-controller="Account"
-                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{__('label.logout')}}</a>
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('label.logout')}}</a>
                 <a class="dropdown-item" href="{{route('about')}}">{{__('label.about')}}</a>
                 <a class="dropdown-item" href="{{route('contacts')}}">{{__('label.contacts')}}</a>
-
-                <form id="logout-form" asp-controller="Account" asp-action="Logout" asp-antiforgery="true" method="POST" style="display: none;" />
+                <form id="logout-form" asp-controller="Account" asp-action="Logout" asp-antiforgery="true" method="POST" style="display: none;"></form>
             </div>
 
         </li>
